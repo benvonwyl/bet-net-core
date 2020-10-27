@@ -1,4 +1,4 @@
-## Installation
+## Run It
 
 needs an operating docker
 
@@ -15,6 +15,12 @@ docker-compose up --build  -d #( run )
 # stop + unmount images 
 docker-compose rm -s -f 
 ```
+
+## Development 
+
+- api bet: .netcore 3.1 
+- mongo db is initialized with mongo init script in Dal Folder
+- docker files and docker-compose are in the API-Bet Folder.
 
 ## Basic Architecture & Running 
 ```
@@ -52,7 +58,7 @@ MongoDb  OfferAPI
 The API works with a mongodatabase and mongo express server. 
 
 - mongodb will starts on port 27017 and can be explored with mongo-express on http://localhost:8081/
-- .NETCore BET-API will launch on http://localhost:5000/ and / displays swagger.
+- .NETCore BET-API will launch on http://localhost:5000/ and displays swagger.
 
 Place a bet :  
 ```curl --location --request POST 'http://localhost:5000/bet' \
@@ -77,12 +83,10 @@ curl --location --request GET 'http://localhost:5000/health'
 
 ## TODO
 - Enrich Swagger
-- Add some missing tests 
-
-- Split differents layers in different projects, and harder: make it works with docker
-- Gherkin integration tests,
-- Use Db Transctions in case of real money transaction on user accounts, use transactions to avoid somebody creating two bets with the same money 
-- Authentication
+- Add some missing unit tests ( db + get )  
+- Split differents layers in different projects, and harder: make it works with docker-compose
+- Develop integration Tests :  Gherkin 
+- Use Db Transctions in case of real money transaction on user accounts, use transactions to avoid somebody creating two bets with the same money. Use a more concrete DB.   
 - Realistic liveness + readyness 
 - ...
 
