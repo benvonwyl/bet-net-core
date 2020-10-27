@@ -75,15 +75,15 @@ curl --location --request GET 'http://localhost:5000/health'
 ```
 
 ## TODO
-Enrich Swagger
-Add some missing tests 
+-Enrich Swagger
+-Add some missing tests 
 
-Split differents layers in different projects, and harder: make it works with docker
-Gherkin integration tests,
-Use Db Transctions in case of real money transaction on user accounts, use transactions to avoid somebody creating two bets with the same money 
-Authentication
-Realistic liveness + readyness 
-...
+-Split differents layers in different projects, and harder: make it works with docker
+-Gherkin integration tests,
+-Use Db Transctions in case of real money transaction on user accounts, use transactions to avoid somebody creating two bets with the same money 
+-Authentication
+-Realistic liveness + readyness 
+- ...
 
 ## Context 
 
