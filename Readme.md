@@ -1,3 +1,33 @@
+## Fonctionnement
+
+Post:Bet+---+
+Get:Bet+----|
+HealthCheck++
+            |
+            |
+API+BET     |                                                       +---DOCKER------+-
++-----------+---+                                                   |-----------+   |
+|               |                                                   || API|BET  |   |
+| Controller    |                                                   +-----------+   |
++---------------+                                                   |               |
+|               |                                                   +---------+     |
+| Ser^ices      |                                                   || MongoDb|     |
++---------------+                                                   +---------+     |
+|         Http  |                                                   |               |
+| Dal     Client|                                                   +---------------+
++--+--------+---+                                                   || Mongo Express|
+   |        |                                                       +---------------+
+   |        |
+   v        v
+MongoDb  OfferAPI
++------+ +------+
+|      | |      |
+|bets  | |Offers|
+|      | |      |
++------+ +------+
+
+
+
 ## Installation
 
 needs an operating docker
