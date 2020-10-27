@@ -1,5 +1,5 @@
 ## Fonctionnement
-
+```
 Post:Bet+---+
 Get:Bet+----|
 HealthCheck++
@@ -26,7 +26,7 @@ MongoDb  OfferAPI
 |      | |      |
 +------+ +------+
 
-
+```
 
 ## Installation
 
