@@ -1,3 +1,21 @@
+## Installation
+
+needs an operating docker
+
+- Clone the repository 
+- Ensure that : docker > settings > files sharing contains this repository 
+- Run : 
+
+```bash
+cd API-BET
+
+# build/run
+docker-compose up --build  -d #( run )
+
+# stop + unmount images 
+docker-compose rm -s -f 
+```
+
 ## Basic Architecture & Running 
 ```
 Post:Bet+---+
@@ -28,23 +46,6 @@ MongoDb  OfferAPI
 
 ```
 
-## Installation
-
-needs an operating docker
-
-- Clone the repository 
-- Ensure that : docker > settings > files sharing contains this repository 
-- Run : 
-
-```bash
-cd API-BET
-
-# build/run
-docker-compose up --build  -d #( run )
-
-# stop + unmount images 
-docker-compose rm -s -f 
-```
 
 ## Usage
 
