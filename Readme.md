@@ -3,19 +3,19 @@
 Post:Bet+---+
 Get:Bet+----|
 HealthCheck++
+            |                                                        RUN:  
             |
-            |
-API+BET     |                                                       +---DOCKER------+-
+API+BET     |                                                       DOCKER----------+
 +-----------+---+                                                   |-----------+   |
-|               |                                                   || API|BET  |   |
+|               |                                                   || API|BET  |   |  Localhost:5000
 | Controller    |                                                   +-----------+   |
 +---------------+                                                   |               |
-|               |                                                   +---------+     |
-| Ser^ices      |                                                   || MongoDb|     |
-+---------------+                                                   +---------+     |
+|               |                                                   +-----------+   |
+| Ser^ices      |                                                   || MongoDb  |   |  localhost:27017
++---------------+                                                   +-----------+   |
 |         Http  |                                                   |               |
 | Dal     Client|                                                   +---------------+
-+--+--------+---+                                                   || Mongo Express|
++--+--------+---+                                                   || Mongo Express|  localhost:8081 
    |        |                                                       +---------------+
    |        |
    v        v
