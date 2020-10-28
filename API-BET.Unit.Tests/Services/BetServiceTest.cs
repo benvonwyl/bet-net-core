@@ -66,7 +66,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequestInvalidStake();
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
 
             Assert.Equal("Invalid Stake amount", e.Message);
         }
@@ -81,7 +81,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequestInvalidCustomerID();
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
 
             Assert.Equal("Invalid Customer Id", e.Message);
         }
@@ -98,7 +98,7 @@ namespace API_BET_TESTS
             betRequest.Offers = null;
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Offers cannot be empty", e.Message);
         }
 
@@ -113,7 +113,7 @@ namespace API_BET_TESTS
             betRequest.Offers[0].Odd = null;
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Offers must have a valid Odd", e.Message);
         }
 
@@ -129,7 +129,7 @@ namespace API_BET_TESTS
             betRequest.Offers[0].OfferId = null;
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Offers must have a valid OfferId", e.Message);
         }
 
@@ -165,7 +165,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequest();
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal(" Unable To Find active offer 502570804", e.Message);
         }
         [Fact]
@@ -183,7 +183,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequest();
             
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal(" Unable To validate offer's odd 502570803", e.Message);
         }
 
@@ -202,7 +202,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequest();
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal(" Unable To validate offer's odd 502570803", e.Message);
         }
 
@@ -221,7 +221,7 @@ namespace API_BET_TESTS
             betRequest.Stake = 50000;
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Invalid Potential Winning Amount", e.Message);
         }
         
@@ -241,7 +241,7 @@ namespace API_BET_TESTS
             betRequest.Offers[1].Odd *= 20000;
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<InvalidBetIdRequestException>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<InvalidBetPlacementRequestException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Odds shall be greater or equal than 1.1 and lesser or equal 20000", e.Message);
         }
 
@@ -263,7 +263,7 @@ namespace API_BET_TESTS
             var betRequest = Mocks.DummyBetRequest();
 
             // Act - Assert 
-            var e = await Assert.ThrowsAsync<Exception>(() => betService.PlaceBet(betRequest));
+            var e = await Assert.ThrowsAsync<TechnicalException>(() => betService.PlaceBet(betRequest));
             Assert.Equal("Technical error trying to record bet ", e.Message);
         }
     }

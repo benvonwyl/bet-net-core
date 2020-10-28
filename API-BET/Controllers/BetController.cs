@@ -29,7 +29,7 @@ namespace API_BET.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(String id)
+        public async Task<ActionResult<Bet>> Get(String id)
         {
             Bet bet;
             try
@@ -42,7 +42,7 @@ namespace API_BET.Controllers
             }
             catch (Exception e) 
             {
-                return StatusCode(500, e); 
+                return StatusCode(500, e.Message); 
             }
 
             if (bet == null) 

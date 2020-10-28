@@ -79,5 +79,84 @@ namespace API_BET_TESTS
             Assert.Same(((ObjectResult)result.Result).Value, Mocks.DummyInvalidBetException().Message);
             Assert.Equal(500, ((ObjectResult)result.Result).StatusCode);
         }
+
+        [Fact]
+        public async Task Get_SuccessFulls_200_When_Service_Returns_Value()
+        {
+            // Arrange
+            var betService = new Mock<IBetService>();
+
+            BetRequest betRequest = Mocks.DummyBetRequest();
+            Bet betMock = new Bet();
+            betService.Setup(x => x.GetBet("betId")).Returns(betMock);
+
+            var betController = new BetController(null, betService.Object);
+
+            // Act
+            var result = await betController.Get("betId");
+
+            // Assert
+            Assert.IsType<ActionResult<Bet>>(result);
+            Assert.IsType<OkObjectResult>(result.Result);
+            Assert.Same(((OkObjectResult)result.Result).Value, betMock);
+        }
+
+        [Fact]
+        public async Task Get_OK_But_404_When_Service_Returns_No_Value()
+        {
+            // Arrange
+            var betService = new Mock<IBetService>();
+
+            BetRequest betRequest = Mocks.DummyBetRequest();
+            Bet betMock = null;
+            betService.Setup(x => x.GetBet("betId")).Returns(betMock);
+
+            var betController = new BetController(null, betService.Object);
+
+            // Act
+            var result = await betController.Get("betId");
+
+            // Assert
+            Assert.IsType<ActionResult<Bet>>(result);
+            Assert.IsType<NotFoundResult>(result.Result);
+        }
+
+        [Fact]
+        public async Task Get_KO_400_When_Service_Args_Have_No_Value()
+        {
+            // Arrange
+            var betService = new Mock<IBetService>();
+
+            betService.Setup(x => x.GetBet(null)).Throws(new InvalidBetIdRequestException("reason"));
+
+            var betController = new BetController(null, betService.Object);
+
+            // Act
+            var result = await betController.Get(null);
+
+            // Assert
+            Assert.IsType<ActionResult<Bet>>(result);
+            Assert.IsType<BadRequestObjectResult>(result.Result);
+            Assert.Same(((BadRequestObjectResult)result.Result).Value, "reason");
+        }
+        [Fact]
+        public async Task Get_KO_500_When_Service_Throws_Unexpected_Exception()
+        {
+            // Arrange
+            var betService = new Mock<IBetService>();
+
+            betService.Setup(x => x.GetBet(null)).Throws(new TechnicalException("reason"));
+
+            var betController = new BetController(null, betService.Object);
+
+            // Act
+            var result = await betController.Get(null);
+
+            // Assert
+            Assert.IsType<ActionResult<Bet>>(result);
+            Assert.IsType<ObjectResult>(result.Result);
+            Assert.Same(((ObjectResult)result.Result).Value, "reason");
+            Assert.Equal(500, ((ObjectResult)result.Result).StatusCode);
+        }
     }
 }

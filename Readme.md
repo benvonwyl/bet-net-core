@@ -3,7 +3,7 @@
 needs an operating docker
 
 - Clone the repository 
-- Ensure that : docker > settings > files sharing contains this repository 
+- /!\ Ensure that : docker > settings > files sharing contains this repository /!\
 - Run : 
 
 ```bash
