@@ -83,7 +83,6 @@ curl --location --request GET 'http://localhost:5000/health'
 
 ## TODO
 - Enrich Swagger
-- Add some missing unit tests ( db + get )  
 - Split differents layers in different projects, and harder: make it works with docker-compose
 - Develop integration Tests :  Gherkin 
 - Use Db Transctions in case of real money transaction on user accounts, use transactions to avoid somebody creating two bets with the same money. Use a more concrete DB.   
